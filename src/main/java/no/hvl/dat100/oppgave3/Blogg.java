@@ -1,72 +1,79 @@
 package no.hvl.dat100.oppgave3;
 
-import no.hvl.dat100.common.TODO;
-import no.hvl.dat100.oppgave1.*;
+import no.hvl.dat100.oppgave1.Innlegg;
 
 public class Blogg {
 
-	// TODO: objektvariable 
+	private Innlegg[] innleggs;
+	private int nesteledig;
 
 	public Blogg() {
-		throw new UnsupportedOperationException(TODO.constructor("Blogg"));
+		this.innleggs = new Innlegg[20];
+		this.nesteledig = 0;
 	}
 
 	public Blogg(int lengde) {
-		throw new UnsupportedOperationException(TODO.constructor("Blogg"));
+		this.innleggs = new Innlegg[lengde];
+		this.nesteledig = 0;
 	}
 
 	public int getAntall() {
-		throw new UnsupportedOperationException(TODO.method());
+		return nesteledig;
 	}
-	
+
 	public Innlegg[] getSamling() {
-		throw new UnsupportedOperationException(TODO.method());
-
+		return innleggs;
 	}
-	
-	public int finnInnlegg(Innlegg innlegg) {
 
-		throw new UnsupportedOperationException(TODO.method());
+	public int finnInnlegg(Innlegg innlegg) {
+		for (int i = 0; i < nesteledig; i++) {
+			if (innleggs[i].erLik(innlegg)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	public boolean finnes(Innlegg innlegg) {
-		throw new UnsupportedOperationException(TODO.method());
+		return finnInnlegg(innlegg) != -1;
 	}
 
 	public boolean ledigPlass() {
-		throw new UnsupportedOperationException(TODO.method());
-
+		return nesteledig < innleggs.length;
 	}
-	
+
 	public boolean leggTil(Innlegg innlegg) {
-
-		throw new UnsupportedOperationException(TODO.method());
+		if (innlegg != null && ledigPlass()) {
+			innleggs[nesteledig++] = innlegg;
+			return true;
+		}
+		return false;
 	}
-	
+
+	@Override
 	public String toString() {
-		throw new UnsupportedOperationException(TODO.method());
+		StringBuilder sb = new StringBuilder();
+		sb.append(nesteledig).append("\n");
+		for (int i = 0; i < nesteledig; i++) {
+			sb.append(innleggs[i].toString());
+		}
+		return sb.toString();
 	}
 
-	// valgfrie oppgaver nedenfor
-	
+	// Optional methods to be implemented later
 	public void utvid() {
-		throw new UnsupportedOperationException(TODO.method());
+		throw new UnsupportedOperationException("Not yet implemented");
 	}
-	
+
 	public boolean leggTilUtvid(Innlegg innlegg) {
-
-		throw new UnsupportedOperationException(TODO.method());
-		
+		throw new UnsupportedOperationException("Not yet implemented");
 	}
-	
+
 	public boolean slett(Innlegg innlegg) {
-		
-		throw new UnsupportedOperationException(TODO.method());
+		throw new UnsupportedOperationException("Not yet implemented");
 	}
-	
-	public int[] search(String keyword) {
-		
-		throw new UnsupportedOperationException(TODO.method());
 
+	public int[] search(String keyword) {
+		throw new UnsupportedOperationException("Not yet implemented");
 	}
 }
